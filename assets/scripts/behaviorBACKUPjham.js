@@ -1,5 +1,5 @@
 $(document).ready(function() {
-// Meal Categories; selection randomizes specific meal to query
+
     let beef = ["52874", "52878", "52997", "52904", "52812", "52873", "52952", "52834", "52824", "52803", "53013", "52979", "52826", "52998", "53031", "53021", "52781", "52938", "52947", "52827", "52876", "52927", "53006", "53029", "52943", "53017", "52930", "52941", "52992", "52770", "52881", "52935", "52950", "53000"];
     let breakfast = ["52965", "52895", "52957", "52896", "52967", "52962", "52964"];
     let chicken = ["52940", "53016", "52846", "52796", "52934", "52956", "52850", "52765", "52818", "52875", "52795", "52831", "52920", "52879", "53011", "52832", "52830", "52996", "52951", "52993", "52937", "52820", "52813", "52945", "52851", "52774", "52780", "52933", "53020", "53028", "52806", "52772", "52814"];
@@ -14,57 +14,64 @@ $(document).ready(function() {
     let starters = ["52842", "52840", "52779", "52841"];
     let vegan = ["52942", "52794", "52775"];
     let vegetarian = ["52807", "52870", "52785", "52955", "52906", "53025", "53012", "52971", "52868", "53027", "52973", "52865", "52864", "52921", "52908", "52811", "52816", "52963", "52784", "52872", "52771", "52797", "52849", "52866", "52817", "52911", "52869", "53026", "52863", "52867", "52871"];
+
+
     let spacer = "========================================";
-    let mealID = '52874';
-    let queryURL = "https://www.themealdb.com/api/json/v1/1/lookup.php?i=" + mealID;
- 
-    // Get Full Meal Details by ID
-    //  https://www.themealdb.com/api/json/v1/1/lookup.php?i=52772
+    let ingredient = "beef"
+    // 
+    let queryURL = "https://www.themealdb.com/api/json/v1/1/filter.php?c=" + ingredient;
+    // let queryURL = "https://www.themealdb.com/api/json/v1/1/filter.php?i=chicken_breast";
 
-/*
-    Function receives
-    function getIDList(ingredient) {
-        $.get("https://www.themealdb.com/api/json/v1/1/filter.php?i=" + ingredient, function(response) { 
-            const arrayGen = response.meals.map(function(v) {return v.idMeal})
-            let workingID = arrayGen[Math.floor(Math.random() * arrayGen.length)]
-            $.get("https://www.themealdb.com/api/json/v1/1/lookup.php?i=" + workingID, function(response) {
-                console.log(response);
-         }) 
-        });
-    } 
-
+// Meals Categories: just for notes
+/* mealsCatArr = [
+    "Beef", "Breakfast", "Chicken", "Dessert", "Goat", "Lamb", "Miscellaneous", "Pasta", "Pork", "Seafood", "Side", "Starter", "Vegan", "Vegetarian"
+    ]
 */
 
-// function getIDList(ingredient) {
-//     $.get("https://www.themealdb.com/api/json/v1/1/filter.php?i=" + ingredient, function(response) { 
-//         const arrayGen = response.meals.map(function(v) {return v.idMeal})
-//         let workingID = arrayGen[Math.floor(Math.random() * arrayGen.length)]
-//         $.get("https://www.themealdb.com/api/json/v1/1/lookup.php?i=" + workingID, function(response) {
-//             console.log(response);
-//      }) 
-//     });
-// } 
+// Meals filtered by category returns every meal ID in that category:
+// https://www.themealdb.com/api/json/v1/1/filter.php?c=Seafood
 
-// getIDList('vegetarian');
+// When user selects dropdown, they see the meals categories.
+// What GETS the first API information is www.apicall/
 
-console.log(spacer);
+// User selects dropdown, clicks submit, queries submission for: Meal Categories
     $.ajax({
         url: queryURL,
         method: "GET"
-    }).then(function(fullDeets) {
-        let details = fullDeets.meals[0];
-        console.log(details);
-        console.log("Meal Name: " + details.strMeal);
+      }).then(function(identifier) {
+// I want a function that 
+
+
+
+        console.log("Meal Name, Meal Image, and Meal ID:");
+        console.log(identifier);
         console.log(spacer);
-        console.log("Meal Image: " + details.strMealThumb);
+        console.log("Meal ID: " + identifier.meals[0].idMeal);
         console.log(spacer);
-        console.log("Meal Ingredient #1: " + details.strIngredient1);
-        console.log(spacer);
-        console.log("Meal Measurement #1: " + details.strMeasure1);
-        console.log(spacer);
-        console.log("Meal Instructions:");
-        console.log(details.strInstructions);
-    })
+// Second API uses ID from above to  
+           // Get Full Meal Details by ID
+            //  https://www.themealdb.com/api/json/v1/1/lookup.php?i=52772
+            // let mealID = '52874';
+            let mealID = identifier.meals[0].idMeal;
+            let mealIDURL = "https://www.themealdb.com/api/json/v1/1/lookup.php?i=" + mealID;
+            $.ajax({
+              url: mealIDURL,
+              method: "GET"
+            }).then(function(fullDeets) {
+                let details = fullDeets.meals[0];
+                console.log(details);
+                console.log("Meal Name: " + details.strMeal);
+                console.log(spacer);
+                console.log("Meal Image: " + details.strMealThumb);
+                console.log(spacer);
+                console.log("Meal Ingredient #1: " + details.strIngredient1);
+                console.log(spacer);
+                console.log("Meal Measurement #1: " + details.strMeasure1);
+                console.log(spacer);
+                console.log("Meal Instructions:");
+                console.log(details.strInstructions);
+            })
+    });
 });
 
 
