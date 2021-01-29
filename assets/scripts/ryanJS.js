@@ -15,12 +15,12 @@ $(document).ready(function() {
 
     // Experimental array of ingredients
     let ingredients = ["Chicken", "Spinach", "Lamb", "Butter", "Broccoli"];
-    let typeAPI = "meal"
+    let typeAPI = "meal";
 
-    // Call getDrinkPromises
+    // Call get Ingredient Promises
     getIngredPromises(ingredients, typeAPI);
 
-    // getDrinkPromises function
+    // get Ingredient Promises function
     function getIngredPromises(array, type) {
 
         if (type === "meal") functionURL = mealURL;
@@ -43,22 +43,25 @@ $(document).ready(function() {
 
             // Loop to concat the arrays of IDs together.
             for (let i = 0; i < response.length; i++) {
-                if (type === "drink") { arrGen = arrGen.concat(response[i].drinks.map(function(v) {return v.idDrink})) }
-                else if (type === "meal") { arrGen = arrGen.concat(response[i].meals.map(function(v) {return v.idMeal})) }
+                if (type === "drink") { arrGen = arrGen.concat(response[i].drinks.map(function(v) {return v.idDrink}))}
+                else if (type === "meal") { arrGen = arrGen.concat(response[i].meals.map(function(v) {return v.idMeal}))}
                 else return;
             }
             // forEach counts the number of times each ID appears in the list.
             arrGen.forEach(function(x) {
-                counts[x] = (counts[x] || 0)+1;
+                counts[x] = (counts[x] || 0) + 1;
             })
 
             // Converts the resulting counts object into a more easily usable JSON object.
             Object.entries(counts).forEach(e => finalList["items"].push({"id":e[0],"count":e[1]}))
 
             // Sorts the JSON object by count descending.
-            finalList.items.sort(function(a,b) { return b.count - a.count })
+            finalList.items.sort(function(a,b) { return b.count - a.count });
 
-            console.log(finalList);
+            // Top 10.
+            let top10 = [];
+            for( let i = 0; i < 10 || i < finalList.length; i++) { top10[i] = $.get(functionURL + lookUpURL + finalList.items[i].id, ((response) => { return response }))};
+            Promise.all(top10).then((response) => { console.log(response) });
 
 
         })
