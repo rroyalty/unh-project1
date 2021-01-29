@@ -3,24 +3,33 @@ $(document).ready(function() {
 
     // API Constants
     const drinkAPIkey = "1";
+    const mealAPIkey = "1";
     const drinkURL = "https://www.thecocktaildb.com/api/json/v1/" + drinkAPIkey + "/";
-    const filterURL = "filter.php/?i=";
+    const mealURL = "https://www.themealdb.com/api/json/v1/" + mealAPIkey + "/";
+    const filterURL = "filter.php?i=";
+    const lookUpURL = "lookup.php?i=";
+    const searchURL = "search.php?s=";
 
-    // The JSON object that our final list of IDs will sit in.
-    let finalList = {"drinks":[]};
+    // The JSON object that our final list of IDs will push to.
+    let finalList = {"items":[]};
 
     // Experimental array of ingredients
-    let ingredients = ["Vodka", "Gin"];
+    let ingredients = ["Chicken", "Spinach", "Lamb", "Butter", "Broccoli"];
+    let typeAPI = "meal"
 
     // Call getDrinkPromises
-    getDrinksPromises(ingredients);
+    getIngredPromises(ingredients, typeAPI);
 
     // getDrinkPromises function
-    function getDrinksPromises(array) {
+    function getIngredPromises(array, type) {
+
+        if (type === "meal") functionURL = mealURL;
+        else if (type === "drink") functionURL = drinkURL;
+        else return;
         
         // Created an array of promises, each index being the response for one of the ingredients in the array.
         for (let i = 0; i < array.length; i++) {
-            array[i] = $.get(drinkURL + filterURL + array[i], function(response) {
+            array[i] = $.get(functionURL + filterURL + array[i], function(response) {
                         return response;
                     });
         };
@@ -35,25 +44,30 @@ $(document).ready(function() {
             let counts = {};
 
             // Loop to concat the arrays of IDs together.
-            for (let i = 0; i < response.length; i++)
+            if (type === "drink") {
+                for (let i = 0; i < response.length; i++)
+                    {
+                        arrGen = arrGen.concat(response[i].drinks.map(function(v) {return v.idDrink}));
+                    };
+            } else if (type === "meal") {
+                for (let i = 0; i < response.length; i++)
                 {
-                    arrGen = arrGen.concat(response[i].drinks.map(function(v) {return v.idDrink}));
-                }
-
+                    arrGen = arrGen.concat(response[i].meals.map(function(v) {return v.idMeal}));
+                };
+            }
             // forEach counts the number of times each ID appears in the list.
             arrGen.forEach(function(x) {
                 counts[x] = (counts[x] || 0)+1;
             })
 
             // Converts the resulting counts object into a more easily usable JSON object.
-            Object.entries(counts).forEach(e => finalList["drinks"].push({"id":e[0],"count":e[1]}))
+            Object.entries(counts).forEach(e => finalList["items"].push({"id":e[0],"count":e[1]}))
 
             // Sorts the JSON object by count descending.
-            finalList.drinks.sort(function(a,b) {
+            finalList.items.sort(function(a,b) {
                 return b.count - a.count
             })
             console.log(finalList);
-
         })
     };
 
