@@ -29,9 +29,7 @@ $(document).ready(function() {
         
         // Created an array of promises, each index being the response for one of the ingredients in the array.
         for (let i = 0; i < array.length; i++) {
-            array[i] = $.get(functionURL + filterURL + array[i], function(response) {
-                        return response;
-                    });
+            array[i] = $.get(functionURL + filterURL + array[i], ((response) => { return response }));
         };
 
         // Waits for all promises, then generates a list of IDs for the drinks that use the ingredients. Sorts the list by most ingredients found to least.
@@ -44,16 +42,10 @@ $(document).ready(function() {
             let counts = {};
 
             // Loop to concat the arrays of IDs together.
-            if (type === "drink") {
-                for (let i = 0; i < response.length; i++)
-                    {
-                        arrGen = arrGen.concat(response[i].drinks.map(function(v) {return v.idDrink}));
-                    };
-            } else if (type === "meal") {
-                for (let i = 0; i < response.length; i++)
-                {
-                    arrGen = arrGen.concat(response[i].meals.map(function(v) {return v.idMeal}));
-                };
+            for (let i = 0; i < response.length; i++) {
+                if (type === "drink") { arrGen = arrGen.concat(response[i].drinks.map(function(v) {return v.idDrink})) }
+                else if (type === "meal") { arrGen = arrGen.concat(response[i].meals.map(function(v) {return v.idMeal})) }
+                else return;
             }
             // forEach counts the number of times each ID appears in the list.
             arrGen.forEach(function(x) {
@@ -64,10 +56,11 @@ $(document).ready(function() {
             Object.entries(counts).forEach(e => finalList["items"].push({"id":e[0],"count":e[1]}))
 
             // Sorts the JSON object by count descending.
-            finalList.items.sort(function(a,b) {
-                return b.count - a.count
-            })
+            finalList.items.sort(function(a,b) { return b.count - a.count })
+
             console.log(finalList);
+
+
         })
     };
 
