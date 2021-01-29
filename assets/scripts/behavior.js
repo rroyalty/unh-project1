@@ -14,4 +14,17 @@ $(document).ready(function() {
     $("#recipes").on('mouseleave', function () {
         $("#recipes").removeClass("is-active")
     })
+
+    $("#drinks").on('mouseover', function () {
+        $("#drinks").addClass("is-active")
+    })
+    $("#drinks").on('mouseleave', function () {
+        $("#drinks").removeClass("is-active")
+    })
+    $("#steps").on('mouseover', function () {
+        $("#steps").addClass("is-active")
+    })
+    $("#steps").on('mouseleave', function () {
+        $("#steps").removeClass("is-active")
+    })
 })
