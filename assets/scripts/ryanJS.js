@@ -6,6 +6,9 @@ $(document).ready(function() {
     const drinkURL = "https://www.thecocktaildb.com/api/json/v1/" + drinkAPIkey + "/";
     const filterURL = "filter.php/?i=";
 
+    // The JSON object that our final list of IDs will sit in.
+    let finalList = {"drinks":[]};
+
     // Experimental array of ingredients
     let ingredients = ["Vodka", "Gin"];
 
@@ -24,10 +27,7 @@ $(document).ready(function() {
 
         // Waits for all promises, then generates a list of IDs for the drinks that use the ingredients. Sorts the list by most ingredients found to least.
         Promise.all(array).then((response) => {
-            
-            // The JSON object that our final list of IDs will sit in.
-            let finalList = {"drinks":[]};
-            
+
             // Array used to concat all of the drinks found for each ingredient provided.
             let arrGen = [];
 

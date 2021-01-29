@@ -24,6 +24,8 @@ const drinkAlcoholic = $.get("https://www.thecocktaildb.com/api/json/v1/1/list.p
 // Example on how to call the promise.
 Promise.resolve(drinkIngredients).then((response) => console.log(response) /* Your function goes here. */ )
 
+// Or copy the $.get call into your own code.
+
 
 
 
