@@ -1,0 +1,8 @@
+header {
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+.card {
+    max-width: 50%;
+}
