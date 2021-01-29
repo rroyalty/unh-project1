@@ -15,10 +15,12 @@
         <title>Recipe Card App</title>
     </head>
     <body>
-        
-    <!-- Shall we communicate with comments? -->
-    <!-- <form>
+
+    <!-- Meal Dropdown Menu -->
+    <form>
+        <!-- Label is for accessibility, can and should be restyled -->
         <label for="meals">Choose a meal:</label>
+        <!-- Dropdown menu. Note: Only 1 value at a time for this #meals. Captured in Submit button -->
         <select name="meals" id="meals" style="display: block;">
             <option value="beef" class="value">Beef</option>
             <option value="breakfast" class="value">Breakfast</option>
@@ -35,7 +37,10 @@
             <option value="vegan" class="value">Vegan</option>
             <option value="vegetarian" class="value">Vegetarian</option>
         </select>
-    </form> -->
+        <!-- Backend event listener finds #meals.value above (i.e. 'beef') and calls a function -->
+        <!-- function getMealID() searches mealCategories object for key with corresponding name ('beef') -->
+        <button type="submit" id="getMealBtn">Submit</button>
+    </form>
 
     <!-- <script src="./js/script.js"></script> -->
         <script src="./assets/scripts/behavior.js"></script>

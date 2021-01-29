@@ -1,4 +1,12 @@
 $(document).ready(function() {
+// 
+// This query worked fine in the behaviour.js I just switched it out for a $.get method
+// $.ajax({
+//     url: queryURL,
+//     method: "GET"
+// }).then(function(fullDeets) {
+//     console.log(fullDeets);
+// })
 
     let beef = ["52874", "52878", "52997", "52904", "52812", "52873", "52952", "52834", "52824", "52803", "53013", "52979", "52826", "52998", "53031", "53021", "52781", "52938", "52947", "52827", "52876", "52927", "53006", "53029", "52943", "53017", "52930", "52941", "52992", "52770", "52881", "52935", "52950", "53000"];
     let breakfast = ["52965", "52895", "52957", "52896", "52967", "52962", "52964"];
@@ -72,6 +80,86 @@ $(document).ready(function() {
                 console.log(details.strInstructions);
             })
     });
+
+    // getMealID(mealCategories.vegetarian)
+// let mealID = '52874';
+// let queryURL = "https://www.themealdb.com/api/json/v1/1/lookup.php?i=" + mealID;
+// console.log(spacer);
+    // $.ajax({
+    //     url: queryURL,
+    //     method: "GET"
+    // }).then(function(fullDeets) {
+    //     // let details = fullDeets.meals[0];
+    //     // console.log(details);
+    //     // console.log("Meal Name: " + details.strMeal);
+    //     // console.log(spacer);
+    //     // console.log("Meal Image: " + details.strMealThumb);
+    //     // console.log(spacer);
+    //     // console.log("Meal Ingredient #1: " + details.strIngredient1);
+    //     // console.log(spacer);
+    //     // console.log("Meal Measurement #1: " + details.strMeasure1);
+    //     // console.log(spacer);
+    //     // console.log("Meal Instructions:");
+    //     // console.log(details.strInstructions);
+    // })
+
+    /*
+    Function receives
+    function getIDList(ingredient) {
+        $.get("https://www.themealdb.com/api/json/v1/1/filter.php?i=" + ingredient, function(response) { 
+            const arrayGen = response.meals.map(function(v) {return v.idMeal})
+            let workingID = arrayGen[Math.floor(Math.random() * arrayGen.length)]
+            $.get("https://www.themealdb.com/api/json/v1/1/lookup.php?i=" + workingID, function(response) {
+                console.log(response);
+         }) 
+        });
+    } 
+
+*/
+// $('#meals').on('click', function() {
+    
+//     let selection = $(this).val();
+//     // console.log($(this).val());
+//     console.log(selection);
+//     // getMealID(mealCategories.vegetarian)
+//     getMealID(mealCategories[selection]);
+// }) 
+
+    // let mealID = '52874';
+    // let queryURL = "https://www.themealdb.com/api/json/v1/1/lookup.php?i=" + mealID;
+
+    // Get Full Meal Details by ID
+    //  https://www.themealdb.com/api/json/v1/1/lookup.php?i=52772
+
+// read me https://stackoverflow.com/questions/17769934/need-to-use-value-of-an-html-select-option-as-an-array-name
+// turn arrays into object keys, create function
+
+$('#getMealBtn').on('click', function(event) {
+    event.preventDefault();
+    let selection = $('#meals').val();
+    console.log(selection);
+    getMealID(mealCategories[selection]);
+})
+
+function getMealID(meal) {
+    let rand = Math.random();
+    let totalMeals = meal.length;
+    let randIndex = Math.floor(rand * totalMeals);
+    let randomMeal = meal[randIndex];
+    console.log(randomMeal);
+    let queryURL = "https://www.themealdb.com/api/json/v1/1/lookup.php?i=" + randomMeal;
+
+    $.ajax({
+        url: queryURL,
+        method: "GET"
+    }).then(function(fullDeets) {
+        console.log(fullDeets);
+    })
+}
+});
+
+
+
 });
 
 
