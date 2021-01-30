@@ -1,0 +1,24 @@
+{
+    "meals": [
+        {
+            "strMeal": "Broccoli & Stilton soup",
+            "strMealThumb": "https://www.themealdb.com/images/media/meals/tvvxpv1511191952.jpg",
+            "idMeal": "52842"
+        },
+        {
+            "strMeal": "Clam chowder",
+            "strMealThumb": "https://www.themealdb.com/images/media/meals/rvtvuw1511190488.jpg",
+            "idMeal": "52840"
+        },
+        {
+            "strMeal": "Cream Cheese Tart",
+            "strMealThumb": "https://www.themealdb.com/images/media/meals/wurrux1468416624.jpg",
+            "idMeal": "52779"
+        },
+        {
+            "strMeal": "Creamy Tomato Soup",
+            "strMealThumb": "https://www.themealdb.com/images/media/meals/stpuws1511191310.jpg",
+            "idMeal": "52841"
+        }
+    ]
+}
