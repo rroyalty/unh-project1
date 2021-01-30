@@ -1,0 +1,74 @@
+{
+    "meals": [
+        {
+            "strMeal": "Kapsalon",
+            "strMealThumb": "https://www.themealdb.com/images/media/meals/sxysrt1468240488.jpg",
+            "idMeal": "52769"
+        },
+        {
+            "strMeal": "Keleya Zaara",
+            "strMealThumb": "https://www.themealdb.com/images/media/meals/8x09hy1560460923.jpg",
+            "idMeal": "52974"
+        },
+        {
+            "strMeal": "Lamb and Lemon Souvlaki",
+            "strMealThumb": "https://www.themealdb.com/images/media/meals/rjhf741585564676.jpg",
+            "idMeal": "53009"
+        },
+        {
+            "strMeal": "Lamb and Potato pie",
+            "strMealThumb": "https://www.themealdb.com/images/media/meals/sxrpws1511555907.jpg",
+            "idMeal": "52877"
+        },
+        {
+            "strMeal": "Lamb Biryani",
+            "strMealThumb": "https://www.themealdb.com/images/media/meals/xrttsx1487339558.jpg",
+            "idMeal": "52805"
+        },
+        {
+            "strMeal": "Lamb Rogan josh",
+            "strMealThumb": "https://www.themealdb.com/images/media/meals/vvstvq1487342592.jpg",
+            "idMeal": "52808"
+        },
+        {
+            "strMeal": "Lamb Tagine",
+            "strMealThumb": "https://www.themealdb.com/images/media/meals/yuwtuu1511295751.jpg",
+            "idMeal": "52843"
+        },
+        {
+            "strMeal": "Lamb tomato and sweet spices",
+            "strMealThumb": "https://www.themealdb.com/images/media/meals/qtwtss1468572261.jpg",
+            "idMeal": "52782"
+        },
+        {
+            "strMeal": "Lamb Tzatziki Burgers",
+            "strMealThumb": "https://www.themealdb.com/images/media/meals/k420tj1585565244.jpg",
+            "idMeal": "53010"
+        },
+        {
+            "strMeal": "Lancashire hotpot",
+            "strMealThumb": "https://www.themealdb.com/images/media/meals/uttrxw1511637813.jpg",
+            "idMeal": "52884"
+        },
+        {
+            "strMeal": "McSinghs Scotch pie",
+            "strMealThumb": "https://www.themealdb.com/images/media/meals/vssrtx1511557680.jpg",
+            "idMeal": "52880"
+        },
+        {
+            "strMeal": "Rigatoni with fennel sausage sauce",
+            "strMealThumb": "https://www.themealdb.com/images/media/meals/qtqvys1468573168.jpg",
+            "idMeal": "52783"
+        },
+        {
+            "strMeal": "Stuffed Lamb Tomatoes",
+            "strMealThumb": "https://www.themealdb.com/images/media/meals/u55lbp1585564013.jpg",
+            "idMeal": "53008"
+        },
+        {
+            "strMeal": "Tunisian Lamb Soup",
+            "strMealThumb": "https://www.themealdb.com/images/media/meals/t8mn9g1560460231.jpg",
+            "idMeal": "52972"
+        }
+    ]
+}
